@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FormularioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::post('login', function(Request $request){
+//     return 'Login feito com sucesso';
+// });
+
+Route::post('register', [FormularioController::class, 'create']);

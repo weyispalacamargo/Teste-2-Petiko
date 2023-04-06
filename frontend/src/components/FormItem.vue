@@ -4,48 +4,34 @@ import axios from "axios";
 </script>
 <script>
 export default {
+  name: 'FormItem',
   data() {
     return {
-      cpf: "",
-      telefone: "",
-      email: "",
+      dataForm:{}
     };
   },
   methods: {
-    palletsForm() {
-      axios
-        .post("//jsonplaceholder.typicode.com/posts", {
-          cpf: this.cpf,
-          telefone: this.telefone,
-          email: this.email,
-        })
-        .then((response) => {
-          //console.log(response);
-          //this.response = response.data;
-          this.success = "Data saved successfully";
-          this.response = JSON.stringify(response, null, 2);
-        })
-        .catch((error) => {
-          this.response = "Error: " + error.response.status;
-        });
-      this.cpf = "";
-      this.telefone = "";
-      this.email = "";
-    },
+    register(){
+      axios.post(`${process.env.VUE_APP_URL}register`,this.dataForm).then((response)=>{
+        console.log(response.data)
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }
   },
 };
 </script>
 <template>
   <div>
     <p>Preencha o formulário antes de fazer o pedido:</p>
-    <form @submit.prevent="palletsForm">
+    <form>
       <div class="inputContainer">
         <label for="CPF">CPF:</label>
         <input
           type="text"
           id="cpf"
           name="cpf"
-          v-model="cpf"
+          v-model="dataForm.cpf"
           placeholder="Digite o seu CPF"
         />
       </div>
@@ -55,7 +41,7 @@ export default {
           type="text"
           id="telefone"
           name="telefone"
-          v-model="telefone"
+          v-model="dataForm.telefone"
           placeholder="Digite o seu Telefone"
         />
       </div>
@@ -65,7 +51,7 @@ export default {
           type="email"
           id="email"
           name="email"
-          v-model="email"
+          v-model="dataForm.email"
           placeholder="Digite o seu Email"
         />
       </div>
@@ -73,11 +59,8 @@ export default {
         <FilePreview />
       </div>
       <div class="inputContainer">
-        <button type="submit">Enviar</button>
+        <button type="button" @click="register()">Registrar</button>
       </div>
-      <h3>Data retrieved from server:</h3>
-      <p v-if="success">{{ success }}</p>
-      <pre>{{ response }}</pre>
     </form>
   </div>
 </template>

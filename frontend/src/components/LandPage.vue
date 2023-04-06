@@ -81,12 +81,12 @@
     <h2>Pallets For Sale</h2>
     <br />
     <div>
-      <div>Endereço Lorem ipsum dolor</div>
+      <div>Lorem ipsum dolor</div>
       <div>sitamet, SP 10290190</div>
     </div>
     <br />
     <div>
-      <div>Loremipsum@gmail.com</div>
+      <div>loremipsum@gmail.com</div>
       <div>(016)911223344</div>
     </div>
     <br />
